@@ -1,0 +1,77 @@
+const express = require("express");
+const mongoose = require("mongoose");
+const cors = require("cors");
+
+const Student = require("./Student");
+
+const app = express();
+
+app.use(cors());
+app.use(express.json());
+
+mongoose.connect("mongodb://127.0.0.1:27017/studentDB")
+.then(() => {
+    console.log("MongoDB Connected");
+})
+.catch((err) => {
+    console.log(err);
+});
+
+
+// INSERT DATA
+app.post("/students", async (req, res) => {
+    try {
+        const student = new Student(req.body);
+        await student.save();
+
+        res.json(student);
+    } catch (error) {
+        res.json(error);
+    }
+});
+
+
+// FETCH DATA
+app.get("/students", async (req, res) => {
+    try {
+        const students = await Student.find();
+
+        res.json(students);
+    } catch (error) {
+        res.json(error);
+    }
+});
+
+
+// UPDATE DATA
+app.put("/students/:id", async (req, res) => {
+    try {
+        const updatedStudent = await Student.findByIdAndUpdate(
+            req.params.id,
+            req.body,
+            { new: true }
+        );
+
+        res.json(updatedStudent);
+    } catch (error) {
+        res.json(error);
+    }
+});
+
+
+// DELETE DATA
+app.delete("/students/:id", async (req, res) => {
+    try {
+        await Student.findByIdAndDelete(req.params.id);
+
+        res.json({
+            message: "Student Deleted"
+        });
+    } catch (error) {
+        res.json(error);
+    }
+});
+
+app.listen(5000, () => {
+    console.log("Server running on port 5000");
+});
