@@ -31,3 +31,38 @@ mongoose-crud/
 ├── Student.js         # Mongoose schema and model
 ├── package.json       # Project dependencies and scripts
 └── README.md
+
+## 📌 API Endpoints
+
+| Method | Endpoint      | Description            |
+| ------ | ------------- | ---------------------- |
+| POST   | /students     | Create a new student   |
+| GET    | /students     | Retrieve all students  |
+| PUT    | /students/:id | Update student details |
+| DELETE | /students/:id | Delete a student       |
+
+
+## 📄 Sample Student Data
+{
+  "name": "Sai Bhargavi",
+  "course": "Computer Science",
+  "age": 21
+}
+
+##🎯 Learning Outcomes
+
+Through this project, I gained hands-on experience in:
+
+Building RESTful APIs with Express.js
+Connecting Node.js applications with MongoDB
+Creating and managing Mongoose schemas
+Implementing CRUD operations
+Testing APIs using Postman
+Understanding backend application architecture
+## 🔥 Key Highlights
+Complete CRUD functionality
+MongoDB database integration
+Mongoose ODM implementation
+Clean and maintainable code structure
+Beginner-friendly backend project
+Foundation for full-stack MERN development
